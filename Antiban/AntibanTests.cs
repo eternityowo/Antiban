@@ -164,6 +164,134 @@ namespace Antiban
         }
 
         [Fact]
+        public void Test11()
+        {
+            int day = 1;
+            int month = 3;
+            int year = 2022;
+
+            string[] phones = {
+                "77070001101", "77070001102", "77070001103", "77070001104", "77070001105", "77070001106", "77070001107"
+            };
+
+            var antiban = new Antiban();
+
+            antiban.PushEventMessage(new EventMessage(1, phones[0], new DateTime(year, month, day, 12, 0, 0), 0));
+            antiban.PushEventMessage(new EventMessage(2, phones[0], new DateTime(year, month, day, 12, 0, 1), 0));
+
+            var results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+            Assert.True(results[1].EventMessageId == 2 && results[1].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+
+            antiban.PushEventMessage(new EventMessage(4, phones[1], new DateTime(year, month, day, 12, 0, 3), 0));
+            antiban.PushEventMessage(new EventMessage(5, phones[2], new DateTime(year, month, day, 12, 0, 4), 0));
+            antiban.PushEventMessage(new EventMessage(6, phones[3], new DateTime(year, month, day, 12, 0, 5), 0));
+            antiban.PushEventMessage(new EventMessage(7, phones[4], new DateTime(year, month, day, 12, 0, 6), 0));
+            antiban.PushEventMessage(new EventMessage(8, phones[5], new DateTime(year, month, day, 12, 0, 7), 0));
+
+            results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+
+            Assert.True(results[1].EventMessageId == 4 && results[1].SentDateTime == new DateTime(year, month, day, 12, 0, 10));
+            Assert.True(results[2].EventMessageId == 5 && results[2].SentDateTime == new DateTime(year, month, day, 12, 0, 20));
+            Assert.True(results[3].EventMessageId == 6 && results[3].SentDateTime == new DateTime(year, month, day, 12, 0, 30));
+            Assert.True(results[4].EventMessageId == 7 && results[4].SentDateTime == new DateTime(year, month, day, 12, 0, 40));
+            Assert.True(results[5].EventMessageId == 8 && results[5].SentDateTime == new DateTime(year, month, day, 12, 0, 50));
+
+            Assert.True(results[6].EventMessageId == 2 && results[6].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+        }
+
+        [Fact]
+        public void Test12()
+        {
+            int day = 1;
+            int month = 3;
+            int year = 2022;
+
+            string[] phones = {
+                "77070001101", "77070001102", "77070001103", "77070001104", "77070001105", "77070001106", "77070001107"
+            };
+
+            var antiban = new Antiban();
+
+            antiban.PushEventMessage(new EventMessage(1, phones[0], new DateTime(year, month, day, 12, 0, 0), 0));
+            antiban.PushEventMessage(new EventMessage(2, phones[0], new DateTime(year, month, day, 12, 0, 1), 0));
+
+            var results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+            Assert.True(results[1].EventMessageId == 2 && results[1].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+
+            antiban.PushEventMessage(new EventMessage(4, phones[1], new DateTime(year, month, day, 12, 0, 3), 0));
+            antiban.PushEventMessage(new EventMessage(5, phones[2], new DateTime(year, month, day, 12, 0, 4), 0));
+            antiban.PushEventMessage(new EventMessage(6, phones[3], new DateTime(year, month, day, 12, 0, 5), 0));
+            antiban.PushEventMessage(new EventMessage(7, phones[4], new DateTime(year, month, day, 12, 0, 6), 0));
+            antiban.PushEventMessage(new EventMessage(8, phones[5], new DateTime(year, month, day, 12, 0, 7), 0));
+
+            antiban.PushEventMessage(new EventMessage(9, phones[6], new DateTime(year, month, day, 12, 0, 8), 0));
+
+            results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+
+            Assert.True(results[1].EventMessageId == 4 && results[1].SentDateTime == new DateTime(year, month, day, 12, 0, 10));
+            Assert.True(results[2].EventMessageId == 5 && results[2].SentDateTime == new DateTime(year, month, day, 12, 0, 20));
+            Assert.True(results[3].EventMessageId == 6 && results[3].SentDateTime == new DateTime(year, month, day, 12, 0, 30));
+            Assert.True(results[4].EventMessageId == 7 && results[4].SentDateTime == new DateTime(year, month, day, 12, 0, 40));
+            Assert.True(results[5].EventMessageId == 8 && results[5].SentDateTime == new DateTime(year, month, day, 12, 0, 50));
+
+            Assert.True(results[6].EventMessageId == 2 && results[6].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+
+            Assert.True(results[7].EventMessageId == 9 && results[7].SentDateTime == new DateTime(year, month, day, 12, 1, 10));
+        }
+
+        [Fact]
+        public void Test13()
+        {
+            int day = 1;
+            int month = 3;
+            int year = 2022;
+
+            string[] phones = {
+                "77070001101", "77070001102", "77070001103", "77070001104", "77070001105", "77070001106", "77070001107"
+            };
+
+            var antiban = new Antiban();
+
+            antiban.PushEventMessage(new EventMessage(1, phones[0], new DateTime(year, month, day, 12, 0, 0), 0));
+            antiban.PushEventMessage(new EventMessage(2, phones[0], new DateTime(year, month, day, 12, 0, 1), 0));
+
+            var results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+            Assert.True(results[1].EventMessageId == 2 && results[1].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+
+            antiban.PushEventMessage(new EventMessage(4, phones[1], new DateTime(year, month, day, 12, 0, 3), 0));
+            antiban.PushEventMessage(new EventMessage(5, phones[2], new DateTime(year, month, day, 12, 0, 4), 0));
+            antiban.PushEventMessage(new EventMessage(6, phones[3], new DateTime(year, month, day, 12, 0, 5), 0));
+            antiban.PushEventMessage(new EventMessage(7, phones[4], new DateTime(year, month, day, 12, 0, 6), 0));
+            antiban.PushEventMessage(new EventMessage(8, phones[5], new DateTime(year, month, day, 12, 0, 7), 0));
+
+            antiban.PushEventMessage(new EventMessage(9, phones[0], new DateTime(year, month, day, 12, 0, 8), 0));
+
+            results = antiban.GetResult();
+
+            Assert.True(results[0].EventMessageId == 1 && results[0].SentDateTime == new DateTime(year, month, day, 12, 0, 0));
+
+            Assert.True(results[1].EventMessageId == 4 && results[1].SentDateTime == new DateTime(year, month, day, 12, 0, 10));
+            Assert.True(results[2].EventMessageId == 5 && results[2].SentDateTime == new DateTime(year, month, day, 12, 0, 20));
+            Assert.True(results[3].EventMessageId == 6 && results[3].SentDateTime == new DateTime(year, month, day, 12, 0, 30));
+            Assert.True(results[4].EventMessageId == 7 && results[4].SentDateTime == new DateTime(year, month, day, 12, 0, 40));
+            Assert.True(results[5].EventMessageId == 8 && results[5].SentDateTime == new DateTime(year, month, day, 12, 0, 50));
+
+            Assert.True(results[6].EventMessageId == 2 && results[6].SentDateTime == new DateTime(year, month, day, 12, 1, 0));
+
+            Assert.True(results[7].EventMessageId == 9 && results[7].SentDateTime == new DateTime(year, month, day, 12, 2, 0));
+        }
+
+        [Fact]
         public void Test7()
         {
             int day = 1;
