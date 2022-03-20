@@ -62,6 +62,11 @@ namespace Antiban
                     bucket.Time0 = eventMessage.DateTime;
                 }
 
+                if (_result.ContainsKey(bucket.Time0))
+                {
+                    bucket.Time0 += SEC_10;
+                }
+
                 var antibanResult = new AntibanResult() { EventMessageId = eventMessage.Id, SentDateTime = bucket.Time0 };
                 _result.Add(bucket.Time0, antibanResult);
             }
@@ -83,6 +88,11 @@ namespace Antiban
                         bucket.Time1 = eventMessage.DateTime;
                         bucket.Time0 = eventMessage.DateTime;
                     }
+                }
+
+                if (_result.ContainsKey(bucket.Time1))
+                {
+                    bucket.Time1 += SEC_10;
                 }
 
                 var antibanResult = new AntibanResult() { EventMessageId = eventMessage.Id, SentDateTime = bucket.Time1 };
